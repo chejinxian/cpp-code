@@ -1,3 +1,6 @@
+#ifndef SEQUENATIALLIST_H
+#define SEQUENATIALLIST_H
+
 #define MAXLENGTH 500
 
 
@@ -5,7 +8,7 @@ template <typename T>
 class SequenatialList
 {
 private:
-    T m_data[MAXLENGTH];
+    T * m_data;
     unsigned int m_listLength;
 public:
 
@@ -29,3 +32,4 @@ public:
     // unsigned int m_listLength;
 };
 
+#endif

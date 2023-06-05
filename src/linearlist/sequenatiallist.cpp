@@ -2,13 +2,15 @@
 
 template <typename T>
 SequenatialList<T>::SequenatialList(/* args */)
-:m_listLength(0)
+: m_listLength(0),
+  m_data(new T[MAXLENGTH])
 {
 }
 
 template <typename T>
 SequenatialList<T>::~SequenatialList()
 {
+    delete[] m_data;
 }
 
 template <typename T>
@@ -36,7 +38,7 @@ unsigned int SequenatialList<T>::GetLength()
 template <typename T>
 bool SequenatialList<T>::GetElem(unsigned int i,T& e)
 {
-    if(i>=m_listLength)
+    if(i<1||i>=m_listLength)
     {
         return false;
     }
@@ -47,7 +49,7 @@ bool SequenatialList<T>::GetElem(unsigned int i,T& e)
 template <typename T>
 unsigned int SequenatialList<T>::LocateElem(T e)
 {
-    for(int i=0;i<m_listLength;i++)
+    for(unsigned int i=0;i<m_listLength;i++)
     {
         if(m_data[i]==e)
         {
@@ -60,7 +62,11 @@ unsigned int SequenatialList<T>::LocateElem(T e)
 template <typename T>
 bool SequenatialList<T>::Insert(unsigned int i,T e)
 {
-    if(i<=0||i>m_listLength+1)
+    if(i<1||i>m_listLength+1)
+    {
+        return false;
+    }
+    if(m_listLength==MAXLENGTH)
     {
         return false;
     }
@@ -76,7 +82,7 @@ bool SequenatialList<T>::Insert(unsigned int i,T e)
 template <typename T>
 bool SequenatialList<T>::Delete(unsigned int i)
 {
-    if(i<=0||i>m_listLength)
+    if(i<=1||i>m_listLength)
     {
         return false;
     }
